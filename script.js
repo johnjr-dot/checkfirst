@@ -106,3 +106,8 @@ function pick(k) {
   document.getElementById('pnext').onclick = () => { p++; showPair(); };
 }
 showPair();
+
+// ---- WhatsApp
+const waText = 'Before you share anything online, try this free 3-step check (takes under a minute): '
+  + location.href.split('#')[0];
+document.getElementById('wa').href = 'https://wa.me/?text=' + encodeURIComponent(waText);

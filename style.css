@@ -72,3 +72,7 @@ footer p{max-width:620px;margin:0 auto}
 .pick .tag{display:block;padding:10px;font-weight:600}
 .pick.right{border-color:var(--real)}
 .pick.wrong{border-color:var(--fake)}
+
+.wa{background:#1a7f46}
+.wa:hover{background:#13633a}
+#copied{display:block;margin:10px 0 0}
