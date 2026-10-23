@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Check Before You Share – Spot fake news, deepfakes and scams</title>
+  <meta name="description" content="Free tools to check news, spot AI-made media and avoid scams before you share.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="top">
+    <a class="logo" href="#top">Check<span>First</span></a>
+    <a class="btn small" href="#checklist">Check a story</a>
+  </nav>
+
+  <header id="top" class="hero">
+    <div class="hero-text">
+      <h1>Got a message or video that feels off? Check it before you share it.</h1>
+      <p>Fake news, AI-made videos and scam messages fool smart people every day. Learn the quick checks that catch them. It's free and takes 3 minutes.</p>
+      <div class="actions">
+        <a class="btn" href="#checklist">Get the 3-step check</a>
+        <a class="btn ghost" href="#quiz">Test your eye</a>
+      </div>
+    </div>
+    <div class="post" aria-label="Example of a suspicious post with warning marks">
+      <div class="scan"></div>
+      <div class="post-head"><span class="avatar"></span><div><b>Official Giveaway KE</b><small>Joined 2 days ago</small></div></div>
+      <p>BREAKING: Free Ksh 50,000 to the first 1,000 people who share!</p>
+      <div class="post-img"><span>video</span></div>
+      <span class="flag f1">New account</span>
+      <span class="flag f2">Urgency + money</span>
+      <span class="flag f3">Lips don't match voice</span>
+    </div>
+  </header>
+
+  <main>
+    <section id="checklist">
+      <h2>The 3-step check before you share</h2>
+      <p class="lead">Takes under a minute. Copy it and send it to family or a group chat.</p>
+      <ol class="steps">
+        <li><b>Who is saying this?</b> Go to their official page or website yourself. Don't use the link you were sent.</li>
+        <li><b>Is anyone else reporting it?</b> Search the headline. Look for two outlets you already trust.</li>
+        <li><b>Is the photo or video original?</b> Run a reverse image search (Google Lens, TinEye) and see where it first appeared.</li>
+      </ol>
+      <button id="copy" class="btn" type="button">Copy the 3-step check</button>
+      <span id="copied" role="status"></span>
+    </section>
+
+    <section id="quiz">
+      <h2>Real or fake? Test your eye</h2>
+      <p class="lead">Read each example and pick one.</p>
+      <div class="card" id="quizbox"></div>
+    </section>
+
+    <section id="signs">
+      <h2>Warning signs to know</h2>
+      <div class="grid">
+        <div><h3>Fake videos and voices</h3><p>Lips slightly out of sync, flat voice, blurry mouth or teeth, and no source. If a famous person offers free money, it's fake.</p></div>
+        <div><h3>AI-made images</h3><p>Odd hands or fingers, garbled text on signs, shadows pointing different ways, skin that looks too smooth.</p></div>
+        <div><h3>Scam messages</h3><p>Pressure to act now, a request to send money back, a link to "confirm" your details, or a number you don't recognise.</p></div>
+        <div><h3>Old news, new story</h3><p>Real photo, wrong story. Check the date and place it first appeared before you believe the caption.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><b>CheckFirst</b> is a free learning tool. When in doubt, don't share, don't pay, and ask someone you trust.</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

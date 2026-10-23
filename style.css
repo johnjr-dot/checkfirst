@@ -1,0 +1,65 @@
+:root{
+  --paper:#eaf0ee; --card:#ffffff; --ink:#10303a; --muted:#496069;
+  --lens:#0e7c86; --lens-dark:#0a5c64; --mark:#ffd23f;
+  --fake:#c2185b; --real:#2e7d4f; --line:#c9d6d3;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:18px/1.6 "Segoe UI",Roboto,system-ui,sans-serif}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;line-height:1.2;margin:0 0 .5em}
+h1{font-size:clamp(1.9rem,6vw,3.1rem)}
+h2{font-size:clamp(1.5rem,4.5vw,2.1rem)}
+h3{font-size:1.15rem}
+a{color:var(--lens-dark)}
+:focus-visible{outline:3px solid var(--mark);outline-offset:2px}
+
+.top{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:var(--ink);position:sticky;top:0;z-index:5}
+.logo{font:700 1.3rem Georgia,serif;color:#fff;text-decoration:none}
+.logo span{background:var(--mark);color:var(--ink);padding:0 6px;margin-left:2px;border-radius:3px}
+
+.btn{display:inline-block;background:var(--lens);color:#fff;border:0;border-radius:8px;padding:14px 22px;font:600 1rem inherit;font-family:inherit;text-decoration:none;cursor:pointer;min-height:48px}
+.btn:hover{background:var(--lens-dark)}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+.btn.small{padding:8px 14px;min-height:40px;background:var(--mark);color:var(--ink)}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+
+.hero{display:grid;gap:36px;max-width:1050px;margin:0 auto;padding:40px 20px 56px;align-items:center}
+@media(min-width:800px){.hero{grid-template-columns:1.1fr .9fr}}
+.hero-text p{max-width:34em}
+
+.post{position:relative;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;box-shadow:0 8px 24px rgba(16,48,58,.12);overflow:hidden;margin:14px 10px}
+.post-head{display:flex;gap:10px;align-items:center}
+.post-head small{display:block;color:var(--muted)}
+.avatar{width:40px;height:40px;border-radius:50%;background:var(--line)}
+.post-img{height:120px;border-radius:8px;background:repeating-linear-gradient(45deg,#cfdad8,#cfdad8 10px,#dbe5e3 10px,#dbe5e3 20px);display:grid;place-items:center;color:var(--muted)}
+.scan{position:absolute;left:0;right:0;height:3px;background:var(--lens);box-shadow:0 0 12px var(--lens);animation:scan 3.5s ease-in-out 1 forwards}
+@keyframes scan{from{top:0}to{top:100%}}
+.flag{position:absolute;background:var(--fake);color:#fff;font-size:.8rem;font-weight:600;padding:3px 9px;border-radius:4px;transform:rotate(-2deg)}
+.f1{top:12px;right:10px}.f2{top:92px;right:10px}.f3{bottom:12px;left:14px}
+@media(prefers-reduced-motion:reduce){.scan{display:none}}
+
+section{max-width:760px;margin:0 auto;padding:44px 20px}
+.lead{color:var(--muted)}
+.steps{padding-left:1.3em}
+.steps li{background:var(--card);border-left:6px solid var(--lens);border-radius:6px;padding:14px 16px;margin:12px 0 12px -1.3em;list-style-position:inside}
+#copied{margin-left:12px;font-weight:600;color:var(--real)}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px}
+.progress{color:var(--muted);font-size:.95rem}
+.choices{display:grid;gap:12px;margin:16px 0}
+@media(min-width:560px){.choices{grid-template-columns:1fr 1fr}}
+.choices button{font:600 1rem inherit;font-family:inherit;padding:14px;border-radius:8px;border:2px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer;min-height:52px}
+.choices button:hover:not(:disabled){background:var(--mark)}
+.result{padding:12px 14px;border-radius:8px;margin:8px 0 14px}
+.result.ok{background:#dcefe3;border-left:6px solid var(--real)}
+.result.no{background:#f8dce8;border-left:6px solid var(--fake)}
+.msg{background:var(--paper);border-radius:8px;padding:14px;font-size:1.05rem}
+
+.grid{display:grid;gap:16px}
+@media(min-width:620px){.grid{grid-template-columns:1fr 1fr}}
+.grid div{background:var(--card);border-top:5px solid var(--mark);border-radius:8px;padding:16px}
+.grid p{margin:0}
+
+footer{background:var(--ink);color:#d3e1e0;padding:28px 20px;text-align:center}
+footer p{max-width:620px;margin:0 auto}
