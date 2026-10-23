@@ -64,3 +64,45 @@ function answer(a) {
   document.getElementById('next').onclick = () => { i++; show(); };
 }
 show();
+
+// ---- AI or Real image quiz ----
+const pairs = [
+  { a: 'images/pair1-a.jpg', b: 'images/pair1-b.jpg', ai: 'b', why: 'Write the clues you can see here.' },
+  { a: 'images/pair2-a.jpg', b: 'images/pair2-b.jpg', ai: 'a', why: 'Write the clues you can see here.' },
+  { a: 'images/pair3-a.jpg', b: 'images/pair3-b.jpg', ai: 'b', why: 'Write the clues you can see here.' }
+];
+const spot = document.getElementById('spotbox');
+let p = 0, pScore = 0;
+
+function showPair() {
+  if (p >= pairs.length) {
+    spot.innerHTML = `<h3>You spotted ${pScore} of ${pairs.length}</h3>
+      <p>Even experts get fooled sometimes. That is why the 3-step check matters.</p>
+      <button class="btn" id="pagain" type="button">Play again</button>`;
+    document.getElementById('pagain').onclick = () => { p = 0; pScore = 0; showPair(); };
+    return;
+  }
+  const it = pairs[p];
+  spot.innerHTML = `<div class="progress">Round ${p + 1} of ${pairs.length}</div>
+    <div class="pair">
+      <button class="pick" type="button" data-k="a"><img src="${it.a}" alt="Picture A"><span class="tag">Picture A</span></button>
+      <button class="pick" type="button" data-k="b"><img src="${it.b}" alt="Picture B"><span class="tag">Picture B</span></button>
+    </div>
+    <div id="pout" aria-live="polite"></div>`;
+  spot.querySelectorAll('.pick').forEach(b => b.onclick = () => pick(b.dataset.k));
+}
+
+function pick(k) {
+  const it = pairs[p], ok = k === it.ai;
+  if (ok) pScore++;
+  spot.querySelectorAll('.pick').forEach(b => {
+    b.disabled = true;
+    b.querySelector('.tag').textContent = b.dataset.k === it.ai ? 'AI-made' : 'Real photo';
+    if (b.dataset.k === k) b.classList.add(ok ? 'right' : 'wrong');
+  });
+  document.getElementById('pout').innerHTML =
+    `<div class="result ${ok ? 'ok' : 'no'}"><b>${ok ? 'Correct.' : 'Not quite.'}</b> ${it.why}</div>
+     <button class="btn" id="pnext" type="button">${p === pairs.length - 1 ? 'See my score' : 'Next round'}</button>`;
+  document.getElementById('pnext').onclick = () => { p++; showPair(); };
+}
+showPair();
