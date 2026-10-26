@@ -51,7 +51,7 @@ const SW_CHECK =
 Nisipoweza kuthibitisha yote matatu, sisambazi.`;
 const SW_WA = 'Kabla ya kusambaza chochote mtandaoni, jaribu ukaguzi huu wa bure wa hatua 3 (huchukua chini ya dakika moja): ';
 
-let lang = 'en';
+lang = 'en';
 
 // Replace the copy button so it can use the right language
 const oldCopy = document.getElementById('copy');
@@ -84,6 +84,7 @@ function setLang(l) {
   document.getElementById('wa').href =
     'https://wa.me/?text=' + encodeURIComponent((l === 'sw' ? SW_WA : 'Before you share anything online, try this free 3-step check (takes under a minute): ') + link);
   document.getElementById('copied').textContent = '';
+  if (typeof refreshQuizzes === 'function') refreshQuizzes();
   try { localStorage.setItem('lang', l); } catch (e) {}
 }
 
