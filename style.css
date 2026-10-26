@@ -76,3 +76,8 @@ footer p{max-width:620px;margin:0 auto}
 .wa{background:#1a7f46}
 .wa:hover{background:#13633a}
 #copied{display:block;margin:10px 0 0}
+
+.tools{list-style:none;padding:0;display:grid;gap:12px}
+.tools li{background:var(--card);border-left:6px solid var(--lens);border-radius:6px;padding:14px 16px}
+.tools a{font-weight:700}
+.tools span{display:block;color:var(--muted)}
