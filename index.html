@@ -6,99 +6,103 @@
   <title>Check Before You Share – Spot fake news, deepfakes and scams</title>
   <meta name="description" content="Free tools to check news, spot AI-made media and avoid scams before you share.">
   <link rel="stylesheet" href="style.css">
-</head>
   <meta name="theme-color" content="#10303a">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%2310303a'/><circle cx='44' cy='44' r='22' fill='none' stroke='%23ffd23f' stroke-width='9'/><path d='M60 60 L82 82' stroke='%23ffd23f' stroke-width='10' stroke-linecap='round'/></svg>">
-
   <meta property="og:type" content="website">
   <meta property="og:title" content="CheckFirst: check it before you share it">
   <meta property="og:description" content="Free 3-step check and quiz to spot fake news, AI-made images and scams.">
   <meta property="og:url" content="https://YOUR-USERNAME.github.io/">
   <meta property="og:image" content="https://YOUR-USERNAME.github.io/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
+</head>
 <body>
   <nav class="top">
     <a class="logo" href="#top">Check<span>First</span></a>
-    <a class="btn small" href="#checklist">Check a story</a>
+    <div class="right">
+      <button id="langbtn" class="lang" type="button">Kiswahili</button>
+      <a class="btn small" href="#checklist" data-i18n="nav_cta">Check a story</a>
+    </div>
   </nav>
 
   <header id="top" class="hero">
     <div class="hero-text">
-      <h1>Got a message or video that feels off? Check it before you share it.</h1>
-      <p>Fake news, AI-made videos and scam messages fool smart people every day. Learn the quick checks that catch them. It's free and takes 3 minutes.</p>
+      <h1 data-i18n="h1">Got a message or video that feels off? Check it before you share it.</h1>
+      <p data-i18n="hero_p">Fake news, AI-made videos and scam messages fool smart people every day. Learn the quick checks that catch them. It's free and takes 3 minutes.</p>
       <div class="actions">
-        <a class="btn" href="#checklist">Get the 3-step check</a>
-        <a class="btn ghost" href="#quiz">Test your eye</a>
+        <a class="btn" href="#checklist" data-i18n="btn_get">Get the 3-step check</a>
+        <a class="btn ghost" href="#quiz" data-i18n="btn_test">Test your eye</a>
       </div>
     </div>
-    <div class="post" aria-label="Example of a suspicious post with warning marks">
+    <div class="post" aria-hidden="true">
       <div class="scan"></div>
-      <div class="post-head"><span class="avatar"></span><div><b>Official Giveaway KE</b><small>Joined 2 days ago</small></div></div>
-      <p>BREAKING: Free Ksh 50,000 to the first 1,000 people who share!</p>
+      <div class="post-head"><span class="avatar"></span><div><b>Official Giveaway KE</b><small data-i18n="joined">Joined 2 days ago</small></div></div>
+      <p data-i18n="post_text">BREAKING: Free Ksh 50,000 to the first 1,000 people who share!</p>
       <div class="post-img"><span>video</span></div>
-      <span class="flag f1">New account</span>
-      <span class="flag f2">Urgency + money</span>
-      <span class="flag f3">Lips don't match voice</span>
+      <span class="flag f1" data-i18n="flag1">New account</span>
+      <span class="flag f2" data-i18n="flag2">Urgency + money</span>
+      <span class="flag f3" data-i18n="flag3">Lips don't match voice</span>
     </div>
   </header>
 
   <main>
     <section id="checklist">
-      <h2>The 3-step check before you share</h2>
-      <p class="lead">Takes under a minute. Copy it and send it to family or a group chat.</p>
+      <h2 data-i18n="cl_h2">The 3-step check before you share</h2>
+      <p class="lead" data-i18n="cl_lead">Takes under a minute. Copy it and send it to family or a group chat.</p>
       <ol class="steps">
-        <li><b>Who is saying this?</b> Go to their official page or website yourself. Don't use the link you were sent.</li>
-        <li><b>Is anyone else reporting it?</b> Search the headline. Look for two outlets you already trust.</li>
-        <li><b>Is the photo or video original?</b> Run a reverse image search (Google Lens, TinEye) and see where it first appeared.</li>
+        <li data-i18n="s1"><b>Who is saying this?</b> Go to their official page or website yourself. Don't use the link you were sent.</li>
+        <li data-i18n="s2"><b>Is anyone else reporting it?</b> Search the headline. Look for two outlets you already trust.</li>
+        <li data-i18n="s3"><b>Is the photo or video original?</b> Run a reverse image search (Google Lens, TinEye) and see where it first appeared.</li>
       </ol>
       <div class="actions">
-  <button id="copy" class="btn" type="button">Copy the 3-step check</button>
-  <a id="wa" class="btn wa" href="#" target="_blank" rel="noopener">Share on WhatsApp</a>
-</div>
-<span id="copied" role="status"></span>
+        <button id="copy" class="btn" type="button" data-i18n="copy">Copy the 3-step check</button>
+        <a id="wa" class="btn wa" href="#" target="_blank" rel="noopener" data-i18n="wa">Share on WhatsApp</a>
+      </div>
+      <span id="copied" role="status"></span>
     </section>
 
     <section id="spot">
-       <h2>Which one is AI-made?</h2>
-       <p class="lead">Look closely, then tap the picture you think is AI.</p>
-       <div class="card" id="spotbox"></div>
+      <h2 data-i18n="spot_h2">Which one is AI-made?</h2>
+      <p class="lead" data-i18n="spot_lead">Look closely, then tap the picture you think is AI.</p>
+      <div class="card" id="spotbox"></div>
     </section>
 
     <section id="quiz">
-      <h2>Real or fake? Test your eye</h2>
-      <p class="lead">Read each example and pick one.</p>
+      <h2 data-i18n="quiz_h2">Real or fake? Test your eye</h2>
+      <p class="lead" data-i18n="quiz_lead">Read each example and pick one.</p>
       <div class="card" id="quizbox"></div>
     </section>
 
     <section id="signs">
-      <h2>Warning signs to know</h2>
+      <h2 data-i18n="signs_h2">Warning signs to know</h2>
       <div class="grid">
-        <div><h3>Fake videos and voices</h3><p>Lips slightly out of sync, flat voice, blurry mouth or teeth, and no source. If a famous person offers free money, it's fake.</p></div>
-        <div><h3>AI-made images</h3><p>Odd hands or fingers, garbled text on signs, shadows pointing different ways, skin that looks too smooth.</p></div>
-        <div><h3>Scam messages</h3><p>Pressure to act now, a request to send money back, a link to "confirm" your details, or a number you don't recognise.</p></div>
-        <div><h3>Old news, new story</h3><p>Real photo, wrong story. Check the date and place it first appeared before you believe the caption.</p></div>
+        <div><h3 data-i18n="g1h">Fake videos and voices</h3><p data-i18n="g1p">Lips slightly out of sync, flat voice, blurry mouth or teeth, and no source. If a famous person offers free money, it's fake.</p></div>
+        <div><h3 data-i18n="g2h">AI-made images</h3><p data-i18n="g2p">Odd hands or fingers, garbled text on signs, shadows pointing different ways, skin that looks too smooth.</p></div>
+        <div><h3 data-i18n="g3h">Scam messages</h3><p data-i18n="g3p">Pressure to act now, a request to send money back, a link to "confirm" your details, or a number you don't recognise.</p></div>
+        <div><h3 data-i18n="g4h">Old news, new story</h3><p data-i18n="g4p">Real photo, wrong story. Check the date and place it first appeared before you believe the caption.</p></div>
       </div>
     </section>
-    <section id="tools">
-  <h2>Free tools to check things yourself</h2>
-  <ul class="tools">
-    <li><a href="https://lens.google.com" target="_blank" rel="noopener">Google Lens</a><span>Search with a photo to see where else it appears online.</span></li>
-    <li><a href="https://tineye.com" target="_blank" rel="noopener">TinEye</a><span>Reverse image search that can help you find older copies of a picture.</span></li>
-    <li><a href="https://pesacheck.org" target="_blank" rel="noopener">PesaCheck</a><span>Fact-checkers for claims in Kenya, Tanzania and Uganda.</span></li>
-    <li><a href="https://africacheck.org" target="_blank" rel="noopener">Africa Check</a><span>An independent fact-checking organisation for Africa.</span></li>
-  </ul>
-</section>
 
-<section id="about">
-  <h2>About this site</h2>
-  <p>CheckFirst is a free learning project made by [Okelo John Ouma]. [checkfirst helps you learn more about scams and gives information about online literacy, to depict on what is true and false online]</p>
-  <p>It does not replace advice from your bank, the police or a trusted professional. If you think you have been scammed, contact your bank or mobile money provider straight away.</p>
-</section>
+    <section id="tools">
+      <h2 data-i18n="tools_h2">Free tools to check things yourself</h2>
+      <ul class="tools">
+        <li><a href="https://lens.google.com" target="_blank" rel="noopener">Google Lens</a><span data-i18n="t1">Search with a photo to see where else it appears online.</span></li>
+        <li><a href="https://tineye.com" target="_blank" rel="noopener">TinEye</a><span data-i18n="t2">Reverse image search that can help you find older copies of a picture.</span></li>
+        <li><a href="https://pesacheck.org" target="_blank" rel="noopener">PesaCheck</a><span data-i18n="t3">Fact-checkers for claims in Kenya, Tanzania and Uganda.</span></li>
+        <li><a href="https://africacheck.org" target="_blank" rel="noopener">Africa Check</a><span data-i18n="t4">An independent fact-checking organisation for Africa.</span></li>
+      </ul>
+    </section>
+
+    <section id="about">
+      <h2 data-i18n="about_h2">About this site</h2>
+      <p data-i18n="about_p1">CheckFirst is a free learning project made by [your name]. [One sentence about why you built it.]</p>
+      <p data-i18n="about_p2">It does not replace advice from your bank, the police or a trusted professional. If you think you have been scammed, contact your bank or mobile money provider straight away.</p>
+    </section>
   </main>
 
   <footer>
-    <p><b>CheckFirst</b> is a free learning tool. When in doubt, don't share, don't pay, and ask someone you trust.</p>
+    <p data-i18n="foot"><b>CheckFirst</b> is a free learning tool. When in doubt, don't share, don't pay, and ask someone you trust.</p>
   </footer>
   <script src="script.js"></script>
+  <script src="lang.js"></script>
 </body>
 </html>

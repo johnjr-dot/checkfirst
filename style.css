@@ -85,3 +85,7 @@ footer p{max-width:620px;margin:0 auto}
 .cats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
 .chip{font-weight:600;font-size:.95rem;font-family:inherit;padding:8px 14px;border-radius:999px;border:2px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer;min-height:40px}
 .chip.on{background:var(--ink);color:#fff}
+
+.right{display:flex;gap:10px;align-items:center}
+.lang{font-weight:600;font-size:.95rem;font-family:inherit;padding:8px 12px;border-radius:8px;border:2px solid #fff;background:transparent;color:#fff;cursor:pointer;min-height:40px}
+.lang:hover{background:#fff;color:var(--ink)}
