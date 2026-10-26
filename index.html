@@ -19,6 +19,7 @@
   <nav class="top">
     <a class="logo" href="#top">Check<span>First</span></a>
     <div class="right">
+      <button id="sizebtn" class="lang" type="button" aria-pressed="false" aria-label="Larger text">A+</button>
       <button id="langbtn" class="lang" type="button">Kiswahili</button>
       <a class="btn small" href="#checklist" data-i18n="nav_cta">Check a story</a>
     </div>
@@ -56,8 +57,10 @@
       <div class="actions">
         <button id="copy" class="btn" type="button" data-i18n="copy">Copy the 3-step check</button>
         <a id="wa" class="btn wa" href="#" target="_blank" rel="noopener" data-i18n="wa">Share on WhatsApp</a>
+        <button id="print" class="btn ghost" type="button" data-i18n="print">Print the checklist</button>
       </div>
       <span id="copied" role="status"></span>
+      <p class="print-only" id="printlink"></p>
     </section>
 
     <section id="spot">

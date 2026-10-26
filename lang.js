@@ -20,6 +20,7 @@ const SW = {
   s3: '<b>Je, picha au video ni ya asili?</b> Tumia utafutaji wa picha kinyume (Google Lens, TinEye) kuona ilipoonekana mara ya kwanza.',
   copy: 'Nakili ukaguzi wa hatua 3',
   wa: 'Shiriki kwenye WhatsApp',
+    print: 'Chapisha ukaguzi',
   spot_h2: 'Ipi imetengenezwa na AI?',
   spot_lead: 'Tazama kwa makini, kisha gusa picha unayodhani ni ya AI.',
   quiz_h2: 'Kweli au uongo? Jaribu macho yako',
@@ -78,6 +79,7 @@ function setLang(l) {
     el.innerHTML = l === 'sw' ? (SW[el.dataset.i18n] ?? el.dataset.en) : el.dataset.en;
   });
   document.documentElement.lang = l;
+    document.getElementById('sizebtn').setAttribute('aria-label', l === 'sw' ? 'Maandishi makubwa' : 'Larger text');
   document.title = l === 'sw' ? SW.title : titleEn;
   document.getElementById('langbtn').textContent = l === 'sw' ? 'English' : 'Kiswahili';
   const link = location.href.split('#')[0];
@@ -93,3 +95,19 @@ document.getElementById('langbtn').addEventListener('click', () => setLang(lang 
 let saved = 'en';
 try { saved = localStorage.getItem('lang') || 'en'; } catch (e) {}
 setLang(saved === 'sw' ? 'sw' : 'en');
+
+// ---- Bigger text ----
+const sizeBtn = document.getElementById('sizebtn');
+function setBig(on) {
+  document.documentElement.classList.toggle('big', on);
+  sizeBtn.setAttribute('aria-pressed', on);
+  try { localStorage.setItem('big', on ? '1' : '0'); } catch (e) {}
+}
+sizeBtn.addEventListener('click', () => setBig(!document.documentElement.classList.contains('big')));
+let big = false;
+try { big = localStorage.getItem('big') === '1'; } catch (e) {}
+setBig(big);
+
+// ---- Print the checklist ----
+document.getElementById('print').addEventListener('click', () => window.print());
+document.getElementById('printlink').textContent = location.href.split('#')[0];
