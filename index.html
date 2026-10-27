@@ -7,6 +7,9 @@
   <meta name="description" content="Free tools to check news, spot AI-made media and avoid scams before you share.">
   <link rel="stylesheet" href="style.css">
   <meta name="theme-color" content="#10303a">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="CheckFirst">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%2310303a'/><circle cx='44' cy='44' r='22' fill='none' stroke='%23ffd23f' stroke-width='9'/><path d='M60 60 L82 82' stroke='%23ffd23f' stroke-width='10' stroke-linecap='round'/></svg>">
   <meta property="og:type" content="website">
   <meta property="og:title" content="CheckFirst: check it before you share it">
@@ -108,5 +111,10 @@
   </footer>
   <script src="script.js"></script>
   <script src="lang.js"></script>
+  <script>
+  if ('serviceWorker' in navigator) {
+    addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+  }
+</script>
 </body>
 </html>
