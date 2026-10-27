@@ -20,6 +20,7 @@ const SW = {
   s3: '<b>Je, picha au video ni ya asili?</b> Tumia utafutaji wa picha kinyume (Google Lens, TinEye) kuona ilipoonekana mara ya kwanza.',
   copy: 'Nakili ukaguzi wa hatua 3',
   wa: 'Shiriki kwenye WhatsApp',
+    a2hs: '<b>Kidokezo:</b> weka tovuti hii kwenye skrini yako ya mwanzo. Kwenye Android, gusa ⋮ kisha <b>Sakinisha programu</b>. Kwenye iPhone, gusa Shiriki kisha <b>Ongeza kwenye Skrini ya Mwanzo</b>.',
     print: 'Chapisha ukaguzi',
   spot_h2: 'Ipi imetengenezwa na AI?',
   spot_lead: 'Tazama kwa makini, kisha gusa picha unayodhani ni ya AI.',
