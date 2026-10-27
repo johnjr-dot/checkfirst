@@ -6,23 +6,24 @@ const T = {
   en: {
     round: 'Round {n} of {m}', picA: 'Picture A', picB: 'Picture B', ai: 'AI-made', real: 'Real photo',
     spotted: 'You spotted {s} of {m}', spotEnd: 'Even experts get fooled sometimes. That is why the 3-step check matters.',
-    again: 'Play again', ok: 'Correct.', no: 'Not quite.', nextRound: 'Next round', seeScore: 'See my score', nextQ: 'Next question',
+    again: 'Play again', share: 'Share my score on WhatsApp', shareMsg: 'I scored {s} out of {m} on CheckFirst. Can you beat me? {u}', ok: 'Correct.', no: 'Not quite.', nextRound: 'Next round', seeScore: 'See my score', nextQ: 'Next question',
     trust: 'Looks trustworthy', susp: 'Looks suspicious', isSusp: 'It is suspicious.', isTrust: 'It is trustworthy.',
     qOf: 'Question {n} of {m}', scored: 'You scored {s} out of {m}',
     sharp: 'Sharp eye. Share the 3-step check with someone who needs it.', start: 'Good start. Read the warning signs below and try again.',
-    cats: { 'All': 'All', 'Scams': 'Scams', 'Deepfakes': 'Deepfakes', 'Fake news': 'Fake news' }
+    cats: { 'All': 'All', 'Scams': 'Scams', 'Messages': 'Messages', 'Deepfakes': 'Deepfakes', 'Fake news': 'Fake news' }
   },
   sw: {
     round: 'Raundi {n} kati ya {m}', picA: 'Picha A', picB: 'Picha B', ai: 'Imetengenezwa na AI', real: 'Picha halisi',
     spotted: 'Umegundua {s} kati ya {m}', spotEnd: 'Hata wataalamu hudanganywa wakati mwingine. Ndiyo maana ukaguzi wa hatua 3 ni muhimu.',
-    again: 'Cheza tena', ok: 'Sahihi.', no: 'Si sahihi kabisa.', nextRound: 'Raundi inayofuata', seeScore: 'Ona alama yangu', nextQ: 'Swali linalofuata',
+    again: 'Cheza tena', share: 'Shiriki alama yangu kwenye WhatsApp', shareMsg: 'Nimepata {s} kati ya {m} kwenye CheckFirst. Unaweza kunishinda? {u}', ok: 'Sahihi.', no: 'Si sahihi kabisa.', nextRound: 'Raundi inayofuata', seeScore: 'Ona alama yangu', nextQ: 'Swali linalofuata',
     trust: 'Inaonekana ya kuaminika', susp: 'Inatia shaka', isSusp: 'Inatia shaka.', isTrust: 'Ni ya kuaminika.',
     qOf: 'Swali {n} kati ya {m}', scored: 'Umepata {s} kati ya {m}',
     sharp: 'Macho makali. Mshirikishe mtu anayehitaji ukaguzi wa hatua 3.', start: 'Mwanzo mzuri. Soma dalili za tahadhari hapa chini ujaribu tena.',
-    cats: { 'All': 'Zote', 'Scams': 'Utapeli', 'Deepfakes': 'Video bandia', 'Fake news': 'Habari za uongo' }
+    cats: { 'All': 'Zote', 'Scams': 'Utapeli', 'Messages': 'Jumbe', 'Deepfakes': 'Video bandia', 'Fake news': 'Habari za uongo' }
   }
 };
 const tx = (k, v = {}) => T[lang][k].replace(/\{(\w)\}/g, (_, x) => v[x]);
+const shareHref = (s, m) => 'https://wa.me/?text=' + encodeURIComponent(tx('shareMsg', { s, m, u: location.href.split('#')[0] }));
 
 // ---- Text of the 3-step check (used by the copy button in lang.js) ----
 const checkText =
@@ -47,7 +48,8 @@ function showPair() {
   if (p >= pairs.length) {
     spot.innerHTML = `<h3>${tx('spotted', { s: pScore, m: pairs.length })}</h3>
       <p>${tx('spotEnd')}</p>
-      <button class="btn" id="pagain" type="button">${tx('again')}</button>`;
+            <div class="actions"><button class="btn" id="pagain" type="button">${tx('again')}</button>
+      <a class="btn wa" href="${shareHref(pScore, pairs.length)}" target="_blank" rel="noopener">${tx('share')}</a></div>`;
     document.getElementById('pagain').onclick = () => { p = 0; pScore = 0; showPair(); };
     return;
   }
@@ -138,47 +140,47 @@ const allItems = [
     why: 'You can see who wrote it, when, and where the facts came from. That is what a trustworthy report looks like.',
     text_sw: 'Makala kwenye tovuti ya gazeti linalojulikana ina jina la mwandishi, tarehe ya leo na viungo vya vyanzo vyake.',
     why_sw: 'Unaona nani aliandika, lini, na ukweli ulitoka wapi. Ndivyo ripoti ya kuaminika inavyoonekana.' },
-      { cat: 'Scams', answer: 'fake',
+      { cat: 'Messages', answer: 'fake',
     text: 'Text message: "You owe a small toll fee. Pay immediately to avoid late penalties: [link]". You have not used a toll road recently.',
     why: 'A small fee with a deadline and a link is designed to make you act without thinking. Check your account on the official website or app that you type in yourself.',
     text_sw: 'Ujumbe: "Una deni dogo la ada ya barabara. Lipa mara moja ili kuepuka faini: [kiungo]". Hujatumia barabara ya ada hivi karibuni.',
     why_sw: 'Ada ndogo yenye muda wa mwisho na kiungo imeundwa ili ufanye haraka bila kufikiri. Kagua akaunti yako kwenye tovuti au programu rasmi uliyoiandika mwenyewe.' },
-  { cat: 'Scams', answer: 'fake',
+  { cat: 'Messages', answer: 'fake',
     text: 'A WhatsApp message or email claims to be from a hotel you really booked. It has your exact check-in date, the correct cost and your full name. It warns that your booking will be cancelled unless you re-verify your card through a link.',
     why: 'Scammers can get real booking details from data leaks or hacked accounts, so correct details do not prove a message is real. Never re-enter card details through a link. Contact the hotel on the number in your official booking.',
     text_sw: 'Unapata ujumbe wa WhatsApp au barua pepe unaodai kutoka hoteli uliyoweka nafasi kweli. Una tarehe yako kamili ya kuingia, gharama sahihi na jina lako kamili. Unaonya kuwa nafasi yako itafutwa isipokuwa uthibitishe tena kadi yako kupitia kiungo.',
     why_sw: 'Matapeli wanaweza kupata maelezo halisi ya uhifadhi kutoka kwa uvujaji wa data au akaunti zilizovamiwa, kwa hiyo maelezo sahihi hayathibitishi kuwa ujumbe ni wa kweli. Usiweke tena taarifa za kadi kupitia kiungo. Wasiliana na hoteli kwa namba iliyo kwenye uhifadhi wako rasmi.' },
-  { cat: 'Scams', answer: 'fake',
+  { cat: 'Messages', answer: 'fake',
     text: 'A text or call shows the exact name of your real bank on your phone: "Fraud alert: did you authorise a charge of 1,200 at a big shop? Reply YES or NO." Minutes after you reply, a caller asks you to move your money to a "safe account".',
     why: 'Caller names can be faked, so a familiar name on your screen proves nothing. No bank will ask you to move money to a safe account. Hang up and call the number on the back of your card.',
     text_sw: 'Ujumbe au simu inaonyesha kwenye simu yako jina kamili la benki yako halisi: "Tahadhari ya udanganyifu: Je, uliidhinisha malipo ya 1,200 kwenye duka kubwa? Jibu NDIYO au HAPANA." Dakika chache baada ya kujibu, mpigaji anakuomba uhamishe pesa zako kwenye "akaunti salama".',
     why_sw: 'Majina ya wapigaji yanaweza kughushiwa, kwa hiyo jina ulilozoea kwenye skrini halithibitishi chochote. Hakuna benki itakayokuomba uhamishe pesa kwenye akaunti salama. Kata simu, kisha upige namba iliyo nyuma ya kadi yako.' },
-  { cat: 'Scams', answer: 'fake',
+  { cat: 'Messages', answer: 'fake',
     text: 'Email: "Your streaming account has been locked. Log in now to fix it." The login page looks identical to the real one.',
     why: 'A page that looks identical can still be a copy. Close the message, then open the service yourself through its app or a web address you type in.',
     text_sw: 'Barua pepe: "Akaunti yako ya huduma ya video imefungwa. Ingia sasa uirekebishe." Ukurasa wa kuingia unafanana kabisa na wa kweli.',
     why_sw: 'Ukurasa unaofanana kabisa bado unaweza kuwa nakala. Funga ujumbe, kisha fungua huduma hiyo mwenyewe kupitia programu yake au anwani unayoandika wewe.' },
-  { cat: 'Scams', answer: 'fake',
+  { cat: 'Messages', answer: 'fake',
     text: 'A text from an unknown number: "Hey Sarah, are we still meeting for coffee today?"',
     why: 'Scammers send friendly wrong-number messages to start a conversation, then build trust before asking for money. Do not reply. Block the number and delete the message.',
     text_sw: 'Ujumbe kutoka namba usiyoifahamu: "Habari Sarah, bado tunakutana kwa kahawa leo?"',
     why_sw: 'Matapeli hutuma jumbe za kirafiki za "namba isiyo sahihi" ili kuanzisha mazungumzo, kisha hujenga uaminifu kabla ya kuomba pesa. Usijibu; zuia namba na ufute ujumbe.' },
-  { cat: 'Scams', answer: 'fake',
+  { cat: 'Messages', answer: 'fake',
     text: 'A message: "Hi Mum, my phone broke so I am using a temporary number. I am in a huge rush and need help paying an urgent bill, can you transfer money?"',
     why: 'Scammers pretend to be your child on a new number. Call your child on the number you already have, and agree on a family code word.',
     text_sw: 'Ujumbe: "Hujambo Mama, simu yangu imeharibika kwa hiyo natumia namba ya muda. Nina haraka na ninahitaji msaada wa kulipa bili ya dharura, unaweza kunitumia pesa?"',
     why_sw: 'Matapeli hujifanya kuwa mtoto wako wakiwa na namba mpya. Mpigie mtoto wako kwa namba uliyo nayo tayari, na wekeni neno la siri la familia.' },
-  { cat: 'Scams', answer: 'real',
+  { cat: 'Messages', answer: 'real',
     text: 'You ordered a parcel. The official app of the courier company, which you already have, shows a delivery fee and you pay inside the app.',
     why: 'You placed the order, and you are paying inside an app you chose, not through a link in a message.',
     text_sw: 'Uliagiza kifurushi. Programu rasmi ya kampuni ya usafirishaji, ambayo tayari unayo, inaonyesha ada ya uwasilishaji na unalipa ndani ya programu.',
     why_sw: 'Wewe ndiye uliyeagiza, na unalipa ndani ya programu uliyoichagua, si kupitia kiungo kwenye ujumbe.' },
-  { cat: 'Scams', answer: 'real',
+  { cat: 'Messages', answer: 'real',
     text: 'Your bank calls about a suspicious payment. You say you will call back, hang up, and phone the number printed on your bank card. The bank confirms the alert.',
     why: 'You checked using a number you trust, not one the caller gave you. That is the right move.',
     text_sw: 'Benki yako inakupigia kuhusu malipo yanayotia shaka. Unasema utapiga baadaye, unakata simu, kisha unapiga namba iliyochapishwa kwenye kadi yako. Benki inathibitisha taarifa hiyo.',
     why_sw: 'Ulikagua kwa namba unayoiamini, si ile aliyokupa mpigaji. Hiyo ndiyo hatua sahihi.' },
-  { cat: 'Scams', answer: 'real',
+  { cat: 'Messages', answer: 'real',
     text: 'You get an email saying your password was changed. You click nothing. You open the official app yourself and see the change in your recent security activity.',
     why: 'The message could not push you anywhere, and you checked in your own app. Alerts you can confirm yourself are safe to trust.',
     text_sw: 'Unapata barua pepe kwamba nenosiri lako limebadilishwa. Hubofyi chochote; unafungua programu rasmi mwenyewe na kuona badiliko hilo kwenye shughuli zako za hivi karibuni za usalama.',
@@ -205,7 +207,7 @@ function start(c) {
 }
 
 function menu() {
-  return '<div class="cats">' + ['All', 'Scams', 'Deepfakes', 'Fake news']
+  return '<div class="cats">' + ['All', 'Scams', 'Messages', 'Deepfakes', 'Fake news']
     .map(c => `<button type="button" class="chip${c === cat ? ' on' : ''}" data-c="${c}">${T[lang].cats[c]}</button>`).join('') + '</div>';
 }
 function bindMenu() {
@@ -216,7 +218,8 @@ function show() {
   if (i >= items.length) {
     box.innerHTML = menu() + `<h3>${tx('scored', { s: score, m: items.length })}</h3>
       <p>${score >= items.length * 0.8 ? tx('sharp') : tx('start')}</p>
-      <button class="btn" id="again" type="button">${tx('again')}</button>`;
+            <div class="actions"><button class="btn" id="again" type="button">${tx('again')}</button>
+      <a class="btn wa" href="${shareHref(score, items.length)}" target="_blank" rel="noopener">${tx('share')}</a></div>`;
     bindMenu();
     document.getElementById('again').onclick = () => start(cat);
     return;
