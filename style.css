@@ -101,3 +101,5 @@ html.big{font-size:125%}
   .steps li{border:2px solid #000;background:#fff;break-inside:avoid}
   .print-only{display:block;margin-top:24px;font-weight:600}
 }
+
+footer a{color:var(--mark)}
