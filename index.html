@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Check Before You Share – Spot fake news, deepfakes and scams</title>
   <meta name="description" content="Free tools to check news, spot AI-made media and avoid scams before you share.">
+  <script>try{var t=localStorage.getItem('theme');if(!t&&matchMedia('(prefers-color-scheme: dark)').matches)t='dark';if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}</script>
   <link rel="stylesheet" href="style.css">
   <meta name="theme-color" content="#10303a">
   <link rel="manifest" href="manifest.json">
@@ -22,6 +23,7 @@
   <nav class="top">
     <a class="logo" href="#top">Check<span>First</span></a>
     <div class="right">
+      <button id="themebtn" class="lang" type="button" aria-label="Switch to dark mode">☾</button>
       <button id="sizebtn" class="lang" type="button" aria-pressed="false" aria-label="Larger text">A+</button>
       <button id="langbtn" class="lang" type="button">Kiswahili</button>
       <a class="btn small" href="#checklist" data-i18n="nav_cta">Check a story</a>

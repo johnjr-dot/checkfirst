@@ -22,6 +22,7 @@ const SW = {
   wa: 'Shiriki kwenye WhatsApp',
     a2hs: '<b>Kidokezo:</b> weka tovuti hii kwenye skrini yako ya mwanzo. Kwenye Android, gusa ⋮ kisha <b>Sakinisha programu</b>. Kwenye iPhone, gusa Shiriki kisha <b>Ongeza kwenye Skrini ya Mwanzo</b>.',
     print: 'Chapisha ukaguzi',
+      ptip: 'Ukiwa na shaka, usisambaze, usilipe, na muulize mtu unayemwamini.',
   spot_h2: 'Ipi imetengenezwa na AI?',
   spot_lead: 'Tazama kwa makini, kisha gusa picha unayodhani ni ya AI.',
   quiz_h2: 'Kweli au uongo? Jaribu macho yako',
@@ -80,6 +81,7 @@ function setLang(l) {
     el.innerHTML = l === 'sw' ? (SW[el.dataset.i18n] ?? el.dataset.en) : el.dataset.en;
   });
   document.documentElement.lang = l;
+    updateThemeBtn();
     document.getElementById('sizebtn').setAttribute('aria-label', l === 'sw' ? 'Maandishi makubwa' : 'Larger text');
   document.title = l === 'sw' ? SW.title : titleEn;
   document.getElementById('langbtn').textContent = l === 'sw' ? 'English' : 'Kiswahili';
@@ -112,3 +114,35 @@ setBig(big);
 // ---- Print the checklist ----
 document.getElementById('print').addEventListener('click', () => window.print());
 document.getElementById('printlink').textContent = location.href.split('#')[0];
+
+// ---- Light / dark mode ----
+function updateThemeBtn() {
+  const b = document.getElementById('themebtn');
+  if (!b) return;
+  const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const sw = lang === 'sw';
+  b.textContent = dark ? '☀' : '☾';
+  b.setAttribute('aria-label', dark
+    ? (sw ? 'Badilisha kuwa hali ya mwanga' : 'Switch to light mode')
+    : (sw ? 'Badilisha kuwa hali ya giza' : 'Switch to dark mode'));
+}
+function setTheme(t) {
+  if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+  else document.documentElement.removeAttribute('data-theme');
+  try { localStorage.setItem('theme', t); } catch (e) {}
+  updateThemeBtn();
+}
+document.getElementById('themebtn').addEventListener('click', () => {
+  setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+});
+updateThemeBtn();
+
+// Always print in light colours
+let wasDark = false;
+addEventListener('beforeprint', () => {
+  wasDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  document.documentElement.removeAttribute('data-theme');
+});
+addEventListener('afterprint', () => {
+  if (wasDark) document.documentElement.setAttribute('data-theme', 'dark');
+});
