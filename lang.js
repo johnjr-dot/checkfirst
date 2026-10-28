@@ -44,6 +44,7 @@ const SW = {
   about_h2: 'Kuhusu tovuti hii',
   about_p1: 'CheckFirst ni mradi wa kujifunza wa bure uliotengenezwa na [Okelo John Ouma].[checkfirst inakusaidia] kujifunza zaidi kuhusu matapeli na hutoa taarifa kuhusu uelewa wa mtandao, ili kuonyesha kile kilicho cha kweli na cha uongo mtandaoni]',
   about_p2: 'Haichukui nafasi ya ushauri wa benki yako, polisi au mtaalamu unayemwamini. Ukidhani umetapeliwa, wasiliana na benki yako au mtoa huduma wako wa pesa za simu mara moja.',
+    privacy: 'Faragha: tovuti hii haitumii vidakuzi wala kukusanya majina au maelezo ya mawasiliano. Inahesabu wageni kwa zana rafiki kwa faragha (GoatCounter). Chaguo lako la lugha na rangi huhifadhiwa kwenye kifaa chako pekee.',
   foot: '<b>CheckFirst</b> ni zana ya bure ya kujifunza. Ukiwa na shaka, usisambaze, usilipe, na muulize mtu unayemwamini.'
 };
 const SW_CHECK =
