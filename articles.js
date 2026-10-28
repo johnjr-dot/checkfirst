@@ -1,7 +1,7 @@
 // ---- Community articles: reads articles.json (only articles you have edited and approved) ----
 (function () {
   // Paste your Google Form link between the quotes. While it is empty, the "Write for us" button stays hidden.
-  const FORM_URL = 'https://forms.gle/FcGDxf4zyUAe9Hng7';
+  const FORM_URL = 'https://forms.gle/H4xQ1oPgRYXqwaQk7';
 
   const TXT = {
     en: { by: 'By', read: 'Read the article', empty: 'No community articles yet. Be the first to write one.',
