@@ -1,0 +1,35 @@
+{
+  "stories": [
+    {
+      "date": "2026-06-24",
+      "region": "kenya",
+      "source": "NC4 report, as reported by The Standard",
+      "title": "Kenya records over 3 billion cyber-attack attempts in three months",
+      "title_sw": "Kenya yarekodi zaidi ya majaribio bilioni 3 ya mashambulizi ya mtandaoni katika miezi mitatu",
+      "summary": "The National Computer and Cybercrime Coordination Committee (NC4) reported more than three billion attempted attacks on government systems, cloud services and digital infrastructure in three months. The report also points to more offences linked to digital payments, identity theft, computer fraud and online harassment.",
+      "summary_sw": "Kamati ya Kitaifa ya Kuratibu Uhalifu wa Kompyuta na Mtandao (NC4) iliripoti zaidi ya majaribio bilioni tatu ya mashambulizi dhidi ya mifumo ya serikali, huduma za wingu na miundombinu ya kidijitali ndani ya miezi mitatu. Ripoti pia inaonyesha kuongezeka kwa makosa yanayohusiana na malipo ya kidijitali, wizi wa utambulisho, ulaghai wa kompyuta na unyanyasaji mtandaoni.",
+      "url": "https://standardmedia.co.ke/business/amp/national/article/2001551235/kenya-hit-by-over-3b-cyber-attack-attempts-in-3-months"
+    },
+    {
+      "date": "2026-03",
+      "region": "global",
+      "source": "FTC Consumer Alerts",
+      "title": "FTC: how to avoid, report and recover from scams",
+      "title_sw": "FTC: jinsi ya kuepuka, kuripoti na kupona kutokana na utapeli",
+      "summary": "During National Consumer Protection Week 2026, the FTC urged people to learn the signs of a scam, to report scams, and, if they sent money, to ask the company they paid whether the payment can be cancelled or reversed as soon as possible. It also encourages talking about scams with family, friends and neighbours.",
+      "summary_sw": "Wakati wa Wiki ya Kitaifa ya Ulinzi wa Mteja 2026, FTC iliwahimiza watu kujifunza dalili za utapeli, kuripoti utapeli, na ikiwa walituma pesa, kuuliza kampuni waliyotumia kama malipo yanaweza kusitishwa au kurudishwa haraka iwezekanavyo. Pia inahimiza kuzungumza kuhusu utapeli na familia, marafiki na majirani.",
+      "url": "https://www.consumer.ftc.gov/consumer-alerts/2026/03/welcome-ncpw-2026"
+    }
+  ],
+  "sources": [
+    { "name": "Directorate of Criminal Investigations (DCI)", "region": "kenya", "url": "https://www.dci.go.ke" },
+    { "name": "Communications Authority of Kenya", "region": "kenya", "url": "https://www.ca.go.ke" },
+    { "name": "National Computer and Cybercrimes Coordination Committee (NC4)", "region": "kenya", "url": "https://www.nc4.go.ke" },
+    { "name": "Business Daily Africa", "region": "kenya", "url": "https://www.businessdailyafrica.com" },
+    { "name": "Safaricom fraud alerts", "region": "kenya", "url": "https://www.safaricom.co.ke" },
+    { "name": "INTERPOL cybercrime", "region": "global", "url": "https://www.interpol.int" },
+    { "name": "Google Security Blog", "region": "global", "url": "https://security.googleblog.com" },
+    { "name": "Scamwatch (National Anti-Scam Centre, Australia)", "region": "global", "url": "https://www.scamwatch.gov.au" },
+    { "name": "FTC Consumer Alerts (US Federal Trade Commission)", "region": "global", "url": "https://consumer.ftc.gov/consumer-alerts" }
+  ]
+}
