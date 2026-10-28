@@ -47,7 +47,12 @@ const SW = {
     news_h2: 'Habari za utapeli',
   news_lead: 'Muhtasari mfupi wa tahadhari za utapeli kutoka vyanzo rasmi na vya kuaminika. Fungua habari asili kusoma habari kamili.',
   src_h: 'Vyanzo tunavyofuata',
-    privacy: 'Faragha: tovuti hii haitumii vidakuzi wala kukusanya majina au maelezo ya mawasiliano. Inahesabu wageni kwa zana rafiki kwa faragha (GoatCounter). Chaguo lako la lugha na rangi huhifadhiwa kwenye kifaa chako pekee.',
+    art_h2: 'Makala za jamii',
+  art_lead: 'Wasomaji wanaandika kuhusu utapeli na jinsi ya kujilinda. Kila makala husomwa na kuhaririwa kabla ya kuchapishwa.',
+  write_btn: 'Andika kwetu',
+  guide_h: 'Miongozo ya uandishi',
+  guide_body: '<ul><li>Maneno 300 hadi 800, kwa Kiingereza au Kiswahili.</li><li>Andika kuhusu utapeli, ulaghai na usalama mtandaoni. Shiriki ulichojifunza na jinsi ya kuwalinda wengine.</li><li>Usiwataje watu binafsi au biashara ndogo kuwa matapeli. Eleza kilichotokea bila kumtambulisha mtu.</li><li>Tuambie ukweli wako umetoka wapi. Tunaweza kuomba vyanzo.</li><li>Hakuna namba za simu, viungo au maelezo ya malipo kwenye maandishi yako. Mhariri huweka viungo rasmi.</li><li>Kazi yako mwenyewe pekee. Usinakili kutoka tovuti nyingine.</li><li>Hakuna ushauri wa kiafya wala wa uwekezaji.</li><li>Tunasoma kila makala lakini hatuwezi kuchapisha zote. Tunaweza kuihariri kwa urefu na uwazi.</li><li>Jina lako litaonekana kama ulivyoliandika kwenye fomu. Barua pepe yako hubaki siri.</li></ul>',
+    privacy: 'Faragha: tovuti hii haitumii vidakuzi. Inahesabu wageni kwa zana rafiki kwa faragha (GoatCounter). Ukituma makala, tunapokea jina na barua pepe unazotoa na tunazitumia tu kuwasiliana nawe kuhusu makala hiyo. Tunachapisha jina ulilochagua pekee. Chaguo lako la lugha na rangi huhifadhiwa kwenye kifaa chako pekee.',
   foot: '<b>CheckFirst</b> ni zana ya bure ya kujifunza. Ukiwa na shaka, usisambaze, usilipe, na muulize mtu unayemwamini.'
 };
 const SW_CHECK =
@@ -95,6 +100,7 @@ function setLang(l) {
   document.getElementById('copied').textContent = '';
   if (typeof refreshQuizzes === 'function') refreshQuizzes();
   if (typeof refreshNews === 'function') refreshNews();
+  if (typeof refreshArticles === 'function') refreshArticles();
   try { localStorage.setItem('lang', l); } catch (e) {}
 }
 

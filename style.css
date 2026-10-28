@@ -160,3 +160,9 @@ html[data-theme="dark"] footer{background:#07141a}
 .sources{margin-top:18px}
 .sources summary{cursor:pointer;font-weight:600}
 .sources li{margin:6px 0}
+
+[hidden]{display:none!important}
+.artbody{margin-top:10px}
+.artbody p{margin:0 0 10px}
+.story details summary{cursor:pointer;font-weight:600;color:var(--link)}
+.sources ul{padding-left:1.2em}
