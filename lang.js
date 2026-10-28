@@ -44,6 +44,9 @@ const SW = {
   about_h2: 'Kuhusu tovuti hii',
   about_p1: 'CheckFirst ni mradi wa kujifunza wa bure uliotengenezwa na [Okelo John Ouma].[checkfirst inakusaidia] kujifunza zaidi kuhusu matapeli na hutoa taarifa kuhusu uelewa wa mtandao, ili kuonyesha kile kilicho cha kweli na cha uongo mtandaoni]',
   about_p2: 'Haichukui nafasi ya ushauri wa benki yako, polisi au mtaalamu unayemwamini. Ukidhani umetapeliwa, wasiliana na benki yako au mtoa huduma wako wa pesa za simu mara moja.',
+    news_h2: 'Habari za utapeli',
+  news_lead: 'Muhtasari mfupi wa tahadhari za utapeli kutoka vyanzo rasmi na vya kuaminika. Fungua habari asili kusoma habari kamili.',
+  src_h: 'Vyanzo tunavyofuata',
     privacy: 'Faragha: tovuti hii haitumii vidakuzi wala kukusanya majina au maelezo ya mawasiliano. Inahesabu wageni kwa zana rafiki kwa faragha (GoatCounter). Chaguo lako la lugha na rangi huhifadhiwa kwenye kifaa chako pekee.',
   foot: '<b>CheckFirst</b> ni zana ya bure ya kujifunza. Ukiwa na shaka, usisambaze, usilipe, na muulize mtu unayemwamini.'
 };
@@ -91,6 +94,7 @@ function setLang(l) {
     'https://wa.me/?text=' + encodeURIComponent((l === 'sw' ? SW_WA : 'Before you share anything online, try this free 3-step check (takes under a minute): ') + link);
   document.getElementById('copied').textContent = '';
   if (typeof refreshQuizzes === 'function') refreshQuizzes();
+  if (typeof refreshNews === 'function') refreshNews();
   try { localStorage.setItem('lang', l); } catch (e) {}
 }
 

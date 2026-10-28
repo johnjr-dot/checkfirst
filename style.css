@@ -149,3 +149,14 @@ html[data-theme="dark"] footer{background:#07141a}
 #themebtn,#sizebtn,#langbtn{font-size:.85rem;padding:4px 8px;min-height:32px;line-height:1;border-width:1.5px}
 #themebtn{font-size:1rem}
 #langbtn{padding:4px 10px}
+
+.newslist{display:grid;gap:14px;margin-top:14px}
+.story{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--lens);border-radius:8px;padding:14px 16px}
+.story.kenya{border-left-color:var(--mark)}
+.story .meta{font-size:.85rem;color:var(--muted);margin-bottom:4px}
+.story h3{margin:0 0 6px}
+.story p{margin:0 0 8px}
+.story a{font-weight:600}
+.sources{margin-top:18px}
+.sources summary{cursor:pointer;font-weight:600}
+.sources li{margin:6px 0}
