@@ -57,8 +57,8 @@ function showPair() {
   const it = pairs[p];
   spot.innerHTML = `<div class="progress">${tx('round', { n: p + 1, m: pairs.length })}</div>
     <div class="pair">
-      <button class="pick" type="button" data-k="a"><img src="${it.a}" alt="${tx('picA')}"><span class="tag">${tx('picA')}</span></button>
-      <button class="pick" type="button" data-k="b"><img src="${it.b}" alt="${tx('picB')}"><span class="tag">${tx('picB')}</span></button>
+      <button class="pick" type="button" data-k="a"><img loading="lazy" decoding="async" src="${it.a}" alt="${tx('picA')}"><span class="tag">${tx('picA')}</span></button>
+      <button class="pick" type="button" data-k="b"><img loading="lazy" decoding="async" src="${it.b}" alt="${tx('picB')}"><span class="tag">${tx('picB')}</span></button>
     </div>
     <div id="pout" aria-live="polite"></div>`;
   spot.querySelectorAll('.pick').forEach(b => b.onclick = () => pick(b.dataset.k));
