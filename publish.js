@@ -16,6 +16,24 @@ const ORDER = ['name', 'email', 'title', 'article', 'sources', 'language', 'conf
 
 const norm = s => String(s || '').replace(/\r\n?/g, '\n');
 
+// If a saved web page (.html) is dropped or pasted, turn it into plain text first.
+const looksHtml = t => /^\s*<!doctype html|<html[\s>]|<body[\s>]/i.test(t);
+function htmlToText(h) {
+  let t = String(h)
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .replace(/<(script|style|noscript|head|svg)[\s\S]*?<\/\1>/gi, '')
+    .replace(/<(br|hr)\s*\/?>/gi, '\n')
+    .replace(/<\/(p|div|li|ul|ol|h[1-6]|tr|td|th|label|section|article|header|footer|form|fieldset|legend)>/gi, '\n')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&nbsp;/g, ' ').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'")
+    .replace(/&#x([0-9a-f]+);/gi, (m, x) => String.fromCodePoint(parseInt(x, 16)))
+    .replace(/&#(\d+);/g, (m, d) => String.fromCodePoint(+d))
+    .replace(/&amp;/g, '&');
+  return norm(t).split('\n').map(l => l.replace(/[ \t]+/g, ' ').trim()).join('\n').replace(/\n{3,}/g, '\n\n').trim();
+}
+
+
 function parseLabeled(text) {
   const out = {}; let cur = null, found = 0;
   const keys = Object.keys(LABELS);
@@ -112,7 +130,7 @@ function checkArticle(e, confirmText) {
   return w;
 }
 
-if (typeof module !== 'undefined') module.exports = { parseInput, toParagraphs, toSources, makeSummary, detectLang, checkArticle, parseLabeled, parseTSV };
+if (typeof module !== 'undefined') module.exports = { htmlToText, looksHtml, parseInput, toParagraphs, toSources, makeSummary, detectLang, checkArticle, parseLabeled, parseTSV };
 
 // ---------------- page ----------------
 if (typeof document !== 'undefined' && document.getElementById('raw')) {
@@ -184,7 +202,12 @@ if (typeof document !== 'undefined' && document.getElementById('raw')) {
     $('review').scrollIntoView({ behavior: 'smooth' });
   }
 
-  $('parse').onclick = () => { if ($('raw').value.trim()) fill(parseInput($('raw').value)); };
+  $('parse').onclick = () => {
+    let t = $('raw').value;
+    if (!t.trim()) return;
+    if (looksHtml(t)) { t = htmlToText(t); $('raw').value = t; }
+    fill(parseInput(t));
+  };
   $('clear').onclick = () => { $('raw').value = ''; $('review').hidden = true; };
   document.querySelectorAll('#review input, #review textarea, #review select').forEach(x => x.addEventListener('input', refresh));
 
