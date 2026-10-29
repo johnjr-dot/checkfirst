@@ -1,13 +1,13 @@
 // ---- Community articles: reads articles.json (only articles you have edited and approved) ----
 (function () {
   // Paste your Google Form link between the quotes. While it is empty, the "Write for us" button stays hidden.
-  const FORM_URL = 'https://forms.gle/H4xQ1oPgRYXqwaQk7';
+  const FORM_URL = 'https://forms.gle/6mhntGjmEXB1XD8k9';
 
   const TXT = {
     en: { by: 'By', read: 'Read the article', empty: 'No community articles yet. Be the first to write one.',
-          fail: 'Could not load the articles right now.', note: 'This article is only available in English.' },
+          fail: 'Could not load the articles right now.', note: 'This article is only available in English.', noteSw: 'This article is written in Kiswahili.', sources: 'Sources' },
     sw: { by: 'Na', read: 'Soma makala', empty: 'Hakuna makala za jamii bado. Kuwa wa kwanza kuandika.',
-          fail: 'Imeshindikana kupakia makala kwa sasa.', note: 'Makala hii inapatikana kwa Kiingereza pekee.' }
+          fail: 'Imeshindikana kupakia makala kwa sasa.', note: 'Makala hii inapatikana kwa Kiingereza pekee.', noteSw: 'Makala hii imeandikwa kwa Kiswahili.', sources: 'Vyanzo' }
   };
   const list = document.getElementById('artlist');
   const btn = document.getElementById('writebtn');
@@ -47,9 +47,17 @@
       const d = el('details');
       d.appendChild(el('summary', null, t('read')));
       const body = el('div', 'artbody');
+      const swArticle = a.lang === 'sw'; // article was written in Kiswahili
       const useSw = sw && Array.isArray(a.body_sw) && a.body_sw.length;
-      if (sw && !useSw) body.appendChild(el('p', 'meta', t('note')));
+      if (sw && !useSw && !swArticle) body.appendChild(el('p', 'meta', t('note')));
+      if (!sw && swArticle) body.appendChild(el('p', 'meta', t('noteSw')));
       (useSw ? a.body_sw : (a.body || [])).forEach(par => body.appendChild(el('p', null, par)));
+      if (Array.isArray(a.sources) && a.sources.length) {
+        body.appendChild(el('p', 'meta', t('sources') + ':'));
+        const ul = el('ul');
+        a.sources.forEach(x => ul.appendChild(el('li', null, x)));
+        body.appendChild(ul);
+      }
       d.appendChild(body);
       c.appendChild(d);
       list.appendChild(c);
