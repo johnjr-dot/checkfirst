@@ -166,3 +166,7 @@ html[data-theme="dark"] footer{background:#07141a}
 .artbody p{margin:0 0 10px}
 .story details summary{cursor:pointer;font-weight:600;color:var(--link)}
 .sources ul{padding-left:1.2em}
+
+:root{--btn-radius:999px}
+.btn,.lang,.choices button,.chip{border-radius:var(--btn-radius)}
+.pick,.story,.card,.steps li{border-radius:16px}
