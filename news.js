@@ -1,16 +1,23 @@
-// ---- Scam news: reads news.json and shows it in English or Kiswahili ----
+// ---- Scam news: your hand-picked stories (news.json) + automatic headlines (from your Google Sheet) ----
 (function () {
-  const MAX = 10; // most stories shown at once
+  const MAX = 12; // most stories shown at once
   const TXT = {
     en: { all: 'All', kenya: 'Kenya', global: 'Global', read: 'Read the original', source: 'Source',
-          empty: 'No stories here yet. Check back soon.', fail: 'Could not load the news right now.' },
+          empty: 'No stories here yet. Check back soon.', fail: 'Could not load the news right now.',
+          pick: "Editor's pick", auto: 'Automatic headline',
+          note: 'Automatic headlines are collected from the sources we follow and are not checked by us. Always open the original.',
+          updated: 'Last checked' },
     sw: { all: 'Zote', kenya: 'Kenya', global: 'Dunia', read: 'Soma habari asili', source: 'Chanzo',
-          empty: 'Hakuna habari hapa bado. Rudi hivi karibuni.', fail: 'Imeshindikana kupakia habari kwa sasa.' }
+          empty: 'Hakuna habari hapa bado. Rudi hivi karibuni.', fail: 'Imeshindikana kupakia habari kwa sasa.',
+          pick: 'Chaguo la mhariri', auto: 'Kichwa cha habari cha kiotomatiki',
+          note: 'Vichwa vya habari vya kiotomatiki hukusanywa kutoka vyanzo tunavyofuata na hatuvikagui. Fungua habari asili kila wakati.',
+          updated: 'Ilikaguliwa mwisho' }
   };
   let data = null, region = 'all';
   const list = document.getElementById('newslist');
   const filter = document.getElementById('newsfilter');
   const srcList = document.getElementById('sourcelist');
+  const stamp = document.getElementById('newsupdated');
   if (!list || !filter || !srcList) return;
 
   const L = () => (typeof lang !== 'undefined' && lang === 'sw') ? 'sw' : 'en';
@@ -35,6 +42,11 @@
     const opt = p[2] ? { year: 'numeric', month: 'long', day: 'numeric' } : { year: 'numeric', month: 'long' };
     return dt.toLocaleDateString(L() === 'sw' ? 'sw-KE' : 'en-GB', opt);
   }
+  function fmtTime(iso) {
+    const d = new Date(iso);
+    if (isNaN(d)) return '';
+    return d.toLocaleString(L() === 'sw' ? 'sw-KE' : 'en-GB', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'Africa/Nairobi' });
+  }
 
   function render() {
     if (!data) return;
@@ -56,12 +68,18 @@
     if (!stories.length) list.appendChild(el('p', 'lead', t('empty')));
     stories.forEach(s => {
       const c = el('article', 'story ' + s.region);
-      c.appendChild(el('div', 'meta', t(s.region) + ' · ' + fmt(s.date) + ' · ' + t('source') + ': ' + s.source));
+      c.appendChild(el('div', 'meta', t(s.region) + ' · ' + fmt(s.date) + ' · ' + t('source') + ': ' + s.source + ' · ' + (s.auto ? t('auto') : t('pick'))));
       c.appendChild(el('h3', null, (sw && s.title_sw) || s.title));
-      c.appendChild(el('p', null, (sw && s.summary_sw) || s.summary));
+      const sum = (sw && s.summary_sw) || s.summary;
+      if (sum) c.appendChild(el('p', null, sum));
       if (safe(s.url)) c.appendChild(link(t('read'), s.url));
       list.appendChild(c);
     });
+
+    if (stamp) {
+      stamp.textContent = '';
+      if (data.hasAuto) stamp.textContent = t('note') + (data.updated ? ' ' + t('updated') + ': ' + fmtTime(data.updated) + '.' : '');
+    }
 
     srcList.replaceChildren();
     (data.sources || []).forEach(s => {
@@ -73,8 +91,17 @@
   }
 
   window.refreshNews = render; // lang.js calls this when the language changes
-  fetch('news.json')
-    .then(r => r.json())
-    .then(d => { data = d; render(); })
-    .catch(() => { list.appendChild(el('p', 'lead', t('fail'))); });
+
+  const api = (typeof SHEET_API !== 'undefined' && /^https:\/\//i.test(SHEET_API)) ? SHEET_API : '';
+  const curated = fetch('news.json').then(r => r.json()).catch(() => null);
+  const auto = api ? fetch(api + '?type=news').then(r => r.json()).catch(() => null) : Promise.resolve(null);
+
+  Promise.all([curated, auto]).then(([c, a]) => {
+    if (!c && !a) { list.appendChild(el('p', 'lead', t('fail'))); return; }
+    const mine = (c && c.stories) || [];
+    const have = new Set(mine.map(s => s.url));
+    const auto = ((a && a.stories) || []).filter(s => !have.has(s.url)).map(s => Object.assign({}, s, { auto: true }));
+    data = { stories: mine.concat(auto), sources: (c && c.sources) || [], updated: a && a.updated, hasAuto: auto.length > 0 };
+    render();
+  });
 })();
